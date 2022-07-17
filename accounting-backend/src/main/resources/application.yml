@@ -1,14 +1,18 @@
-# active profiles config
-#
-# Select database
-# ------------------------------------------------
-# When using HSQL, use: hsqldb
-#   other database: to be done. PR welcome :-)
-# ------------------------------------------------
-#
+# postgresql datasource
 spring:
-    profiles:
-        active: hsqldb
+    datasource:
+        url: jdbc:postgresql://localhost:5432/accounting
+        username: accountingUser
+        password: accountingPassword
+        data: classpath:data.sql
+    jpa:
+        properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        hibernate.ddl-auto: create
+        # Generate and log statistics
+        properties.hibernate.generate_statistics: false
+        # Log slow queries
+        properties.hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 1
 
 # logging level
 logging:
@@ -17,6 +21,12 @@ logging:
         web: DEBUG
         graphql: DEBUG
         org.springframework.graphql: DEBUG
+        # Generate and log statistics
+        org.hibernate.stat: DEBUG
+      # Log all SQL statements
+        org.hibernate.SQL: DEBUG
+      # Log cache operations
+        org.hibernate.cache: DEBUG
 
 # GraphQL Settings
 graphql:

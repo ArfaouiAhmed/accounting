@@ -3,26 +3,26 @@ version: "3"
 services:
   api-service:
     image: accounting-backend
+    container_name: accounting-backend
     build:
       context: accounting-backend/.
       dockerfile: Dockerfile
-    networks:
-      - accounting-network
     ports:
       - "8080:8080"
-    #depends_on:
-    #  - mongodb-database
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/accounting
+      - SPRING_DATASOURCE_USERNAME=accountingUser
+      - SPRING_DATASOURCE_PASSWORD=accountingPassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
-#  mongodb-database:
-#    image: mongo:5.0.7
-#    networks:
-#      - spring-boot-with-graphql-network
-#    ports:
-#      - "27017:27017"
-#    environment: # never commit credentials to git
-#      - MONGO_INITDB_ROOT_USERNAME=user
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#      - MONGO_INITDB_DATABASE=test-graphql-db
-
-networks:
-  accounting-network:
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=accountingUser
+      - POSTGRES_PASSWORD=accountingPassword
+      - POSTGRES_DB=accounting
+    ports:
+      - "5432:5432"

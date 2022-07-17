@@ -108,7 +108,7 @@ public class SecurityConfig  {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
 
-        String allowedOrigins = env.getProperty("PETCLINIC_ALLOWED_ORIGINS", "http://localhost:3000");
+        String allowedOrigins = env.getProperty("ACCOUNTING_ALLOWED_ORIGINS", "http://localhost:8080");
 
         Arrays.stream(allowedOrigins.split(","))
                 .forEach(origin -> {
