@@ -1,0 +1,22 @@
+type Query {
+    getCustomers: [Customer]
+    getCustomer(customerId: String!): Customer
+    getCompany(companyId: String!): Company
+}
+
+type Mutation {
+    addCustomer(name: String!): Customer
+    addCompany(customerId: String, name: String!) : Company
+}
+
+type Customer {
+    id: String
+    name: String
+    companies: [Company]
+}
+
+type Company {
+    id: String
+    name: String
+}
+

@@ -1,0 +1,17 @@
+query {
+    getCustomers {
+        name
+    }
+}
+
+query{
+    getCompany(companyId: "1") {
+        id
+    }
+}
+
+query{
+    getCustomer(customerId: "1") {
+        id
+    }
+}

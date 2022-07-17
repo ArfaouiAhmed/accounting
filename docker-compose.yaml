@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  api-service:
+    image: accounting-backend
+    build:
+      context: accounting-backend/.
+      dockerfile: Dockerfile
+    networks:
+      - accounting-network
+    ports:
+      - "8080:8080"
+    #depends_on:
+    #  - mongodb-database
+
+#  mongodb-database:
+#    image: mongo:5.0.7
+#    networks:
+#      - spring-boot-with-graphql-network
+#    ports:
+#      - "27017:27017"
+#    environment: # never commit credentials to git
+#      - MONGO_INITDB_ROOT_USERNAME=user
+#      - MONGO_INITDB_ROOT_PASSWORD=password
+#      - MONGO_INITDB_DATABASE=test-graphql-db
+
+networks:
+  accounting-network:

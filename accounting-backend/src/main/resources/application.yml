@@ -1,0 +1,48 @@
+# active profiles config
+#
+# Select database
+# ------------------------------------------------
+# When using HSQL, use: hsqldb
+#   other database: to be done. PR welcome :-)
+# ------------------------------------------------
+#
+spring:
+    profiles:
+        active: hsqldb
+
+# logging level
+logging:
+    level:
+        root: INFO
+        web: DEBUG
+        graphql: DEBUG
+        org.springframework.graphql: DEBUG
+
+# GraphQL Settings
+graphql:
+    tools:
+        schema-location-pattern: "**/*.graphqls"
+        # Enable or disable the introspection query. Disabling it puts your server in contravention of the GraphQL
+        # specification and expectations of most clients, so use this option with caution
+        introspection-enabled: true
+    graphiql:
+        mapping: /graphiql
+        endpoint:
+            graphql: /graphql
+            subscriptions: /subscriptions
+        subscriptions:
+            timeout: 30
+            reconnect: false
+        basePath: /
+        enabled: true
+        pageTitle: GraphiQL
+        cdn:
+            enabled: false
+            version: latest
+        props:
+            resources:
+                query: query.graphql
+                defaultQuery: defaultQuery.graphql
+                variables: variables.json
+            variables:
+                editorTheme: "solarized light"
