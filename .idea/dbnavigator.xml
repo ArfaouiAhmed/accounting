@@ -45,7 +45,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/accounting-backend/data.sql" connection-id="7e65d31c-1be9-4934-9a6a-de83a3c7fb86" session-id="MAIN" current-schema="public" />
+    <mapping file-url="file://$PROJECT_DIR$/accounting-backend/sample-sql-queries.sql" connection-id="7e65d31c-1be9-4934-9a6a-de83a3c7fb86" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />

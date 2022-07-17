@@ -1,58 +1,69 @@
 # postgresql datasource
 spring:
-    datasource:
-        url: jdbc:postgresql://localhost:5432/accounting
-        username: accountingUser
-        password: accountingPassword
-        data: classpath:data.sql
-    jpa:
-        properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-        show-sql: true
-        hibernate.ddl-auto: create
-        # Generate and log statistics
-        properties.hibernate.generate_statistics: false
+  sql.init:
+    mode: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/accounting
+    username: accountingUser
+    password: accountingPassword
+    initialization-mode: always
+  jpa:
+    show-sql: false
+    generate-ddl: true
+    hibernate.ddl-auto: none
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
         # Log slow queries
-        properties.hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 1
+        session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 1
+        # Generate and log statistics
+        generate_statistics: false
 
 # logging level
 logging:
-    level:
-        root: INFO
-        web: DEBUG
-        graphql: DEBUG
-        org.springframework.graphql: DEBUG
-        # Generate and log statistics
-        org.hibernate.stat: DEBUG
-      # Log all SQL statements
-        org.hibernate.SQL: DEBUG
-      # Log cache operations
-        org.hibernate.cache: DEBUG
+  level:
+    root: INFO
+    web: DEBUG
+    graphql: DEBUG
+    org.springframework.graphql: DEBUG
+    # Generate and log statistics
+    org.hibernate.stat: DEBUG
+    # Log all SQL statements
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.jdbc.core.JdbcTemplate: DEBUG
+    org.springframework.jdbc.core.StatementCreatorUtils: TRACE
+    # Log cache operations
+    org.hibernate.cache: DEBUG
+
 
 # GraphQL Settings
 graphql:
-    tools:
-        schema-location-pattern: "**/*.graphqls"
-        # Enable or disable the introspection query. Disabling it puts your server in contravention of the GraphQL
-        # specification and expectations of most clients, so use this option with caution
-        introspection-enabled: true
-    graphiql:
-        mapping: /graphiql
-        endpoint:
-            graphql: /graphql
-            subscriptions: /subscriptions
-        subscriptions:
-            timeout: 30
-            reconnect: false
-        basePath: /
-        enabled: true
-        pageTitle: GraphiQL
-        cdn:
-            enabled: false
-            version: latest
-        props:
-            resources:
-                query: query.graphql
-                defaultQuery: defaultQuery.graphql
-                variables: variables.json
-            variables:
-                editorTheme: "solarized light"
+  tools:
+    schema-location-pattern: "**/*.graphqls"
+    # Enable or disable the introspection query. Disabling it puts your server in contravention of the GraphQL
+    # specification and expectations of most clients, so use this option with caution
+    introspection-enabled: true
+  graphiql:
+    mapping: /graphiql
+    endpoint:
+      graphql: /graphql
+      subscriptions: /subscriptions
+    subscriptions:
+      timeout: 30
+      reconnect: false
+    basePath: /
+    enabled: true
+    pageTitle: GraphiQL
+    cdn:
+      enabled: false
+      version: latest
+    props:
+      resources:
+        query: query.graphql
+        defaultQuery: defaultQuery.graphql
+        variables: variables.json
+      variables:
+        editorTheme: "solarized light"
