@@ -2,11 +2,18 @@ type Query {
     getCustomers: [Customer]
     getCustomer(customerId: String!): Customer
     getCompany(companyId: String!): Company
+    me: User!
 }
 
 type Mutation {
     addCustomer(name: String!): Customer
     addCompany(customerId: String, name: String!) : Company
+}
+
+
+type User {
+    username: String!
+    fullname: String!
 }
 
 type Customer {
