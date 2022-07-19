@@ -95,8 +95,9 @@ export default function LoginPage() {
                     <Table
                         labels={["Username", "Password", "Role"]}
                         values={[
-                            ["susi", "susi", "ROLE_MANAGER"],
-                            ["joe", "joe", "ROLE_USER"],
+                            ["hatem", "hatem", "ROLE_MANAGER"],
+                            ["ahmed", "ahmed", "ROLE_MANAGER"],
+                            ["test", "test", "ROLE_USER"],
                         ]}
                     />
                 </div>

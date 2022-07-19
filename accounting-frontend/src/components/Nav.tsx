@@ -5,7 +5,8 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { useCurrentUser } from "../use-current-user-fullname";
 import { useLogout } from "../use-logout";
 import Link from "./Link";
-import logo from "../assets/accounting-logo.jpeg"
+import logo from "../assets/accounting-logo.jpeg";
+import profile from "../assets/transparent-user-profile.png";
 
 function NavLogo() {
     console.log(logo);
@@ -81,8 +82,8 @@ export function DefaultNavBar() {
                         <NavLink to="/" exact>
                             Home
                         </NavLink>
-                        <NavLink to="/owners">Owners</NavLink>
-                        <NavLink to="/vets">Veterinarians</NavLink>
+                        <NavLink to="/customers">Customers</NavLink>
+                        <NavLink to="/companies">Companies</NavLink>
                         {/*
             <a
               href="#"
@@ -115,8 +116,8 @@ export function DefaultNavBar() {
                                         <span className="sr-only">Open user menu</span>
                                         <img
                                             className="h-8 w-8 rounded-full"
-                                            src={`http://localhost:8080/images/${username}.png?token=${authToken}`}
-                                            alt=""
+                                            src={profile}
+                                            alt="user profile"
                                         />
                                     </button>
                                 </div>
