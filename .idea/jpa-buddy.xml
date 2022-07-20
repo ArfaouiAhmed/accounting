@@ -2,5 +2,9 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
+    <option name="isSnapshotDb" value="false" />
+    <option name="snapshotModelValue" value="Default" />
+    <option name="newEntityIdType" value="UUID" />
+    <option name="newEntityIdStrategy" value="Auto" />
   </component>
 </project>

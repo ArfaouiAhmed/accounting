@@ -1,0 +1,5 @@
+query FindCustomerById($customerId: ID!) {
+    customer(id: $customerId) {
+        ...CustomerFields
+    }
+}

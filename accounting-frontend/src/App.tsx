@@ -3,8 +3,8 @@ import { useMeLazyQuery } from "./generated/graphql-types";
 import { useAuthToken } from "./login/AuthTokenProvider";
 import LoginPage from "./login/LoginPage";
 import NotFoundPage from "./NotFoundPage";
-// import CustomerPage from "customers/CustomerPage";
-// import CustomersPage from "customers/CustomerSearchPage";
+import CustomerPage from "./customers/CustomerPage";
+import CustomersPage from "./customers/CustomerSearchPage";
 // import CompanyPage from "companies/CompanyPage";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
@@ -34,12 +34,12 @@ function App() {
       <Route path="/" exact>
         <WelcomePage />
       </Route>
-      {/*<Route path="/customers/:customerId" exact>*/}
-      {/*  <CustomerPage />*/}
-      {/*</Route>*/}
-      {/*<Route path="/customers" exact>*/}
-      {/*  <CustomersPage />*/}
-      {/*</Route>*/}
+      <Route path="/customers/:customerId" exact>
+        <CustomerPage />
+      </Route>
+      <Route path="/customers" exact>
+        <CustomersPage />
+      </Route>
       {/*<Route path="/companies/:companyId?">*/}
       {/*  <CompanyPage />*/}
       {/*</Route>*/}

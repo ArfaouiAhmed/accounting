@@ -1,29 +1,104 @@
 type Query {
-    getCustomers: [Customer]
-    getCustomer(customerId: String!): Customer
-    getCompany(companyId: String!): Company
+    # Return all known Customers with optional filter or orders
+    # If size is unset, it defaults to 20
+    # If page is unset, it defaults to 0
+    customers(page: Int, size: Int, filter: CustomerFilter, orders: [CustomerOrder!]): CustomerSearchResult!
+    # Return the Owner with the specified id
+    customer(id: ID!): Customer!
+
+    # Return logged in USer
     me: User!
 }
-
-type Mutation {
-    addCustomer(name: String!): Customer
-    addCompany(customerId: String, name: String!) : Company
-}
-
 
 type User {
     username: String!
     fullname: String!
+    password: String
+    enabled: Boolean
 }
 
 type Customer {
-    id: String
+    id: ID
     name: String
-    companies: [Company]
+    address: String!
+    city: String!
+    phone: String!
 }
 
-type Company {
-    id: String
-    name: String
+
+type CustomerSearchResult {
+    pageInfo: PageInfo!
+    customers: [Customer]!
 }
+
+# The input for customers query by a filter
+input CustomerFilter {
+    name: String
+    address: String
+    city: String
+    telephone: String
+}
+
+# The input for customers query by order
+input CustomerOrder {
+    field: CustomerField!
+    order: CustomerType
+}
+
+# The input for types of query orders
+enum CustomerType {
+    ASC
+    DESC
+}
+
+# The input for types of query orders
+enum CustomerField {
+    id
+    name
+    address
+    city
+    telephone
+}
+
+type PageInfo {
+    pageNumber: Int!
+    totalCount: Int!
+    totalPages: Int!
+    hasNext: Boolean!
+    hasPrev: Boolean!
+    nextPage: Int
+    prevPage: Int
+}
+
+type Mutation {
+    # Add a new Customer
+    addCustomer(input: AddCustomerInput!): AddCustomerPayload!
+
+    # Change an existing owner
+    updateCustomer(input: UpdateCustomerInput!): UpdateCustomerPayload!
+}
+
+input AddCustomerInput {
+    name: String!
+    address: String!
+    city: String!
+    telephone: String!
+}
+
+type AddCustomerPayload {
+    customer: Customer!
+}
+
+input UpdateCustomerInput {
+    customerId: Int!
+    name: String
+    address: String
+    city: String
+    telephone: String
+}
+
+type UpdateCustomerPayload {
+    customer: Customer!
+}
+
 

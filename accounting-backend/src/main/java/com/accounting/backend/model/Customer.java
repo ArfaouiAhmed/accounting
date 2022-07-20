@@ -1,16 +1,34 @@
 package com.accounting.backend.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Value;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Set;
+import javax.persistence.*;
 import java.util.UUID;
-@Data
-@Builder
-public class Customer {
 
-    private String id;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "customers")
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private UUID id;
+
+    @Column(name = "name")
     private String name;
-    private Set<Company> companies;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "phone")
+    private String phone;
+
+
+
 }

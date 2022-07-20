@@ -1,0 +1,21 @@
+query FindCustomerByName($page: Int!, $name: String) {
+    customers(
+        page: $page
+        size: 10
+        filter: { name: $name }
+        orders: [{ field: name }]
+    ) {
+        pageInfo {
+            hasNext
+            hasPrev
+            nextPage
+            prevPage
+            totalPages
+            currentPage: pageNumber
+            customersCount: totalCount
+        }
+        customers {
+            ...CustomerFields
+        }
+    }
+}

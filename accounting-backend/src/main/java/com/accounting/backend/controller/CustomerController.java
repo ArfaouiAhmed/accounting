@@ -1,38 +1,79 @@
 package com.accounting.backend.controller;
 
+import com.accounting.backend.dto.*;
 import com.accounting.backend.model.Customer;
+import com.accounting.backend.model.CustomerFilter;
+import com.accounting.backend.model.CustomerOrder;
+import com.accounting.backend.repository.CustomerRepository;
+import com.accounting.backend.service.CustomerService;
+import graphql.schema.DataFetchingEnvironment;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
+@Slf4j
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CustomerController {
 
-    final static Customer customer1 = Customer.builder()
-            .id("testid")
-            .name("customer1")
-            .build();
+
+    private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
+
 
     @QueryMapping
-    public Optional<Customer> getCustomer(@Argument String customerId) {
-        if (customerId == null) {
-            return null;
-        }
-        return Optional.ofNullable(customer1);
+    public CustomerSearchResult customers(@Argument Optional<Integer> page, @Argument Optional<Integer>size,
+                                       @Argument Optional<CustomerFilter> filter,
+                                       @Argument List<CustomerOrder> orders) {
+        int pageNo = page.orElse(0);
+        int sizeNo = Math.min(size.orElse(20), 25);
+
+        Sort sort = orders != null ? Sort.by(orders.stream().map(CustomerOrder::toOrder).collect(Collectors.toList()))
+                : Sort.unsorted();
+
+        final PageRequest pageRequest = PageRequest.of(pageNo, sizeNo, sort);
+        return new CustomerSearchResult(customerRepository.findAll(filter.orElse(null), pageRequest));
     }
 
     @QueryMapping
-    public List<Customer> getCustomers() {
-        return Arrays.asList(customer1);
+    public Optional<Customer> customer(DataFetchingEnvironment env) {
+        UUID id = env.getArgument("id");
+        return customerRepository.findById(id);
     }
 
     @MutationMapping
-    public Customer addCustomer(@Argument String name){
-        return null;
+    public AddCustomerPayload addCustomer(@Argument AddCustomerInput input) {
+        Customer Customer = customerService.addCustomer(
+                input.getName(),
+                input.getTelephone(),
+                input.getAddress(),
+                input.getCity()
+        );
+
+        return new AddCustomerPayload(Customer);
+    }
+
+    @MutationMapping
+    public UpdateCustomerPayload updateCustomer(@Argument UpdateCustomerInput input) {
+        Customer customer = customerService.updateCustomer(
+                input.getCustomerId(),
+                input.getName(),
+                input.getTelephone(),
+                input.getAddress(),
+                input.getCity()
+        );
+
+        return new UpdateCustomerPayload(customer);
     }
 }
