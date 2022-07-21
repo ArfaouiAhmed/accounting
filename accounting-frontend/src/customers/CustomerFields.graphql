@@ -1,0 +1,7 @@
+fragment CustomerFields on Customer {
+    id
+    name
+    address
+    city
+    phone
+}

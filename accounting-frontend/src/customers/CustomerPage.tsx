@@ -9,20 +9,12 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 // import NewVisitPanel from "./NewVisitPanel";
 
-
-const stringToUuid = (str: any) => {
-  str = str.replace('-', '');
-  return 'xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g, function(c, p) {
-    return str[p % str.length];
-  });
-}
-
 export default function CustomerPage() {
   const { customerId } = useParams<{ customerId: string }>();
 
   const { loading, data, error } = useFindCustomerByIdQuery({
     variables: {
-      customerId: stringToUuid(customerId),
+      customerId: customerId,
     },
   });
 

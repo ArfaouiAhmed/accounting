@@ -5,14 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.lang.Nullable;
 
 import java.util.UUID;
 
-public interface CustomerRepository extends JpaRepository<Customer, UUID> {
+public interface CustomerRepository extends JpaRepository<Customer, UUID>, JpaSpecificationExecutor<Customer> {
 
-    default Page<Customer> findAll(@Nullable Specification<Customer> spec, Pageable pageable) {
-        throw new UnsupportedOperationException("findAll with specification only supported in spring-data-jpa repo currently!");
-    }
+    Page<Customer> findAll(@Nullable Specification<Customer> spec, Pageable pageable);
 
 }

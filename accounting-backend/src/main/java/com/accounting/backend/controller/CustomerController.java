@@ -48,8 +48,8 @@ public class CustomerController {
 
     @QueryMapping
     public Optional<Customer> customer(DataFetchingEnvironment env) {
-        UUID id = env.getArgument("id");
-        return customerRepository.findById(id);
+        String id = env.getArgument("id");
+        return customerRepository.findById(UUID.fromString(id));
     }
 
     @MutationMapping
