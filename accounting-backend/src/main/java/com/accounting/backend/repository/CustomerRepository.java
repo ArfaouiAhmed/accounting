@@ -1,6 +1,6 @@
 package com.accounting.backend.repository;
 
-import com.accounting.backend.model.Customer;
+import com.accounting.backend.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

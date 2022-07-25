@@ -1,4 +1,4 @@
-package com.accounting.backend.model;
+package com.accounting.backend.model.customer;
 
 import lombok.Getter;
 import lombok.Setter;

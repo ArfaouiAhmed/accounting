@@ -1,9 +1,9 @@
 package com.accounting.backend.controller;
 
-import com.accounting.backend.dto.*;
-import com.accounting.backend.model.Customer;
-import com.accounting.backend.model.CustomerFilter;
-import com.accounting.backend.model.CustomerOrder;
+import com.accounting.backend.dto.customer.*;
+import com.accounting.backend.model.customer.Customer;
+import com.accounting.backend.model.customer.CustomerFilter;
+import com.accounting.backend.model.customer.CustomerOrder;
 import com.accounting.backend.repository.CustomerRepository;
 import com.accounting.backend.service.CustomerService;
 import graphql.schema.DataFetchingEnvironment;
@@ -34,8 +34,8 @@ public class CustomerController {
 
     @QueryMapping
     public CustomerSearchResult customers(@Argument Optional<Integer> page, @Argument Optional<Integer>size,
-                                       @Argument Optional<CustomerFilter> filter,
-                                       @Argument List<CustomerOrder> orders) {
+                                          @Argument Optional<CustomerFilter> filter,
+                                          @Argument List<CustomerOrder> orders) {
         int pageNo = page.orElse(0);
         int sizeNo = Math.min(size.orElse(20), 25);
 

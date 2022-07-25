@@ -1,17 +1,19 @@
-package com.accounting.backend.model;
+package com.accounting.backend.model.company;
 
+
+import com.accounting.backend.model.customer.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.UUID;
 
-
 @Getter
 @Setter
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "companies")
+public class Company {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -29,6 +31,7 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

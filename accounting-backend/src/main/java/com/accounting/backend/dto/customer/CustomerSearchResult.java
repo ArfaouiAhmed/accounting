@@ -1,6 +1,7 @@
-package com.accounting.backend.dto;
+package com.accounting.backend.dto.customer;
 
-import com.accounting.backend.model.Customer;
+import com.accounting.backend.dto.PageInfo;
+import com.accounting.backend.model.customer.Customer;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

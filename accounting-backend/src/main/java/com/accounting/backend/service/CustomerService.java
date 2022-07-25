@@ -1,6 +1,6 @@
 package com.accounting.backend.service;
 
-import com.accounting.backend.model.Customer;
+import com.accounting.backend.model.customer.Customer;
 import com.accounting.backend.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotEmpty;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 @Service

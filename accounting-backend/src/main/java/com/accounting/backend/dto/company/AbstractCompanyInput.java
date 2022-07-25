@@ -1,20 +1,18 @@
-package com.accounting.backend.dto;
+package com.accounting.backend.dto.company;
+
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @author Nils Hartmann (nils@nilshartmann.net)
- */
 @Getter
 @Setter
 @ToString
-public class AbstractCustomerInput {
+public class AbstractCompanyInput {
+
     private String name;
     private String address;
     private String city;
     private String telephone;
-
 
 }

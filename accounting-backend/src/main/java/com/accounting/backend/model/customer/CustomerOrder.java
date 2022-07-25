@@ -1,5 +1,7 @@
-package com.accounting.backend.model;
+package com.accounting.backend.model.customer;
 
+import com.accounting.backend.model.OrderField;
+import com.accounting.backend.model.OrderType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.domain.Sort;
 

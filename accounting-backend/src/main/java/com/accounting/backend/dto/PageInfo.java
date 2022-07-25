@@ -1,6 +1,6 @@
 package com.accounting.backend.dto;
 
-import com.accounting.backend.model.Customer;
+import com.accounting.backend.model.customer.Customer;
 import org.springframework.data.domain.Page;
 
 public class PageInfo {

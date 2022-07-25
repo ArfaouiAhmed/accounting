@@ -5,9 +5,21 @@ type Query {
     customers(page: Int, size: Int, filter: CustomerFilter, orders: [CustomerOrder!]): CustomerSearchResult!
     # Return the Owner with the specified id
     customer(id: ID!): Customer!
+    # Return the Company with the specified id
+    company(id: ID!): Company
 
+    # Return a List of all pets that have been registered in the PetClinic
+    companies: [Company!]!
     # Return logged in USer
     me: User!
+}
+
+type Company {
+    id: ID
+    name: String
+    address: String!
+    city: String!
+    phone: String!
 }
 
 type User {
@@ -23,6 +35,7 @@ type Customer {
     address: String!
     city: String!
     phone: String!
+    companies: [Company]
 }
 
 
@@ -76,6 +89,34 @@ type Mutation {
 
     # Change an existing owner
     updateCustomer(input: UpdateCustomerInput!): UpdateCustomerPayload!
+
+    # Add a new Company
+    addCompany(input: AddCompanyInput!): AddCompanyPayload!
+    updateCompany(input: UpdateCompanyInput!): UpdateCompanyPayload!
+}
+
+type UpdateCompanyPayload {
+    company: Company
+}
+
+type AddCompanyPayload {
+    company: Company
+}
+
+input UpdateCompanyInput {
+    companyId: ID!
+    name: String
+    address: String
+    city: String
+    telephone: String
+}
+
+input AddCompanyInput {
+    customerId: ID!
+    name: String!
+    address: String!
+    city: String!
+    telephone: String!
 }
 
 input AddCustomerInput {

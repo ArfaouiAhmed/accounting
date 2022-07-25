@@ -1,4 +1,4 @@
-package com.accounting.backend.dto;
+package com.accounting.backend.dto.customer;
 
 /**
  * @author Nils Hartmann (nils@nilshartmann.net)
