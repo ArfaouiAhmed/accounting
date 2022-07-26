@@ -18,7 +18,7 @@ public class AccountingBackendApplication {
 	 * lazy-loading with Hibernate.
 	 */
 	@Bean
-	@ConditionalOnProperty(value="petclinic.open-session-in-view", havingValue="true", matchIfMissing = true)
+	@ConditionalOnProperty(value="accounting.open-session-in-view", havingValue="true", matchIfMissing = true)
 	public OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
 		return new OpenEntityManagerInViewFilter();
 	}

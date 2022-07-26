@@ -20,14 +20,14 @@ export function AuthTokenProvider({ children }: AuthContextProviderProps) {
     );
 
     React.useEffect(() => {
-        setToken(localStorage.getItem("petclinic.token") || null);
+        setToken(localStorage.getItem("accounting.token") || null);
     }, []);
 
     function updateToken(newToken: string | null) {
         if (!newToken) {
-            localStorage.removeItem("petclinic.token");
+            localStorage.removeItem("accounting.token");
         } else {
-            localStorage.setItem("petclinic.token", newToken);
+            localStorage.setItem("accounting.token", newToken);
         }
 
         setToken(newToken);

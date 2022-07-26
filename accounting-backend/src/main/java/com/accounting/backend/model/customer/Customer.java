@@ -32,5 +32,5 @@ public class Customer {
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.EAGER)
-    private Set<Company> pets;
+    private Set<Company> companies;
 }

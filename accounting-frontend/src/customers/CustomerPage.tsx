@@ -41,37 +41,21 @@ export default function CustomerPage() {
       <div className="mb-4">
         <Heading level="2">Companies</Heading>
       </div>
-      {/*{data.customer.companies.map((company) => (*/}
-      {/*  <div key={company.id} className="mb-8">*/}
-      {/*    <Section invert>*/}
-      {/*      <div className="md:flex items-baseline justify-between border-b-4 border-spr-white mb-2 pb-2">*/}
-      {/*        <Heading level="3">*/}
-      {/*          {company.name}*/}
-      {/*        </Heading>*/}
-      {/*        <Button type="link">Edit {company.name}</Button>*/}
-      {/*      </div>*/}
-      {/*      /!*{company.visits.visits.length ? (*!/*/}
-      {/*      /!*  <Table*!/*/}
-      {/*      /!*    labels={["Visit Date", "Treating vet", "Description"]}*!/*/}
-      {/*      /!*    values={company.visits.visits.map((visit) => [*!/*/}
-      {/*      /!*      visit.date,*!/*/}
-      {/*      /!*      visit.treatingVet ? (*!/*/}
-      {/*      /!*        <Link to={`/vets/${visit.treatingVet.id}`}>*!/*/}
-      {/*      /!*          {visit.treatingVet.firstName} {visit.treatingVet.lastName}*!/*/}
-      {/*      /!*        </Link>*!/*/}
-      {/*      /!*      ) : (*!/*/}
-      {/*      /!*        ""*!/*/}
-      {/*      /!*      ),*!/*/}
-      {/*      /!*      visit.description,*!/*/}
-      {/*      /!*    ])}*!/*/}
-      {/*      /!*  />*!/*/}
-      {/*      /!*) : (*!/*/}
-      {/*      /!*  <b className="block mb-4">No visits yet</b>*!/*/}
-      {/*      /!*)}*!/*/}
-      {/*      <NewCompanyPanel companyId={company.id} />*/}
-      {/*    </Section>*/}
-      {/*  </div>*/}
-      {/*))}*/}
+      {data.customer.companies.length ? (
+        data.customer.companies.map(company => (
+        <div key={company!.id} className="mb-8">
+          <div className="md:flex items-baseline justify-between border-b-4 border-spr-white mb-2 pb-2">
+            <Heading level="3">
+              {company!.name}
+            </Heading>
+            <Button type="link">Edit {company!.name}</Button>
+          </div>
+        </div>)) ) : (
+        <b className="block mb-4">No companies yet</b>
+      )}
+      <NewCompanyPanel customerId={data.customer.id} />
+
+
     </PageLayout>
   );
 }

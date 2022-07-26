@@ -8,8 +8,8 @@ type Query {
     # Return the Company with the specified id
     company(id: ID!): Company
 
-    # Return a List of all pets that have been registered in the PetClinic
-    companies: [Company!]!
+    # Return a List of all companies that have been registered to Customer
+    companies: [Company]!
     # Return logged in USer
     me: User!
 }
@@ -35,7 +35,7 @@ type Customer {
     address: String!
     city: String!
     phone: String!
-    companies: [Company]
+    companies: [Company]!
 }
 
 

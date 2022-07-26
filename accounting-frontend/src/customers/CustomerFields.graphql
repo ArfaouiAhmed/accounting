@@ -6,5 +6,6 @@ fragment CustomerFields on Customer {
     phone
     companies{
         id
+        name
     }
 }
