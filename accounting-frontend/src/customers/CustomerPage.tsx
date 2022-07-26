@@ -8,9 +8,10 @@ import { useFindCustomerByIdQuery } from "../generated/graphql-types";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import NewCompanyPanel from "./NewCompanyPanel";
+import { ID } from "graphql-ws";
 
 export default function CustomerPage() {
-  const { customerId } = useParams<{ customerId: string }>();
+  const { customerId } = useParams<{ customerId: ID }>();
 
   const { loading, data, error } = useFindCustomerByIdQuery({
     variables: {
@@ -53,7 +54,7 @@ export default function CustomerPage() {
         </div>)) ) : (
         <b className="block mb-4">No companies yet</b>
       )}
-      <NewCompanyPanel customerId={data.customer.id} />
+      <NewCompanyPanel  />
 
 
     </PageLayout>

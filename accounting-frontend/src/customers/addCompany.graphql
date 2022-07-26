@@ -1,0 +1,10 @@
+mutation AddCompany($input: AddCompanyInput!) {
+    addCompany(input: $input) {
+        company {
+            name
+            address
+            city
+            phone
+        }
+    }
+}
