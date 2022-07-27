@@ -3,14 +3,16 @@ image:
 tasks:
   - name: Build
     init: |
-      accounting-backend/mvnw package -Dmaven.test.skip=true -pl accounting-backend
+      cd accounting-backend
+      ./mvnw package -Dmaven.test.skip=true
       gp sync-done build
   - name: "Run Accounting Backend"
     init: |
       gp sync-await build
     command: |
+      cd accounting-backend
       export ACCOUNTING_ALLOWED_ORIGINS=`gp url 8080`,`gp url 3000`
-      accounting-backend/mvnw spring-boot:run -pl accounting-backend
+      ./mvnw spring-boot:run
   - name: "Run Accounting Frontend"
     init: |
       cd accounting-frontend
