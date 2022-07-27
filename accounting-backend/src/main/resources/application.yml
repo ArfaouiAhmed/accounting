@@ -31,8 +31,10 @@ spring:
         default_schema: accounting
   flyway:
     enabled: true
-    user: accountingUser
-    password: accountingPassword
+    username: gitpod
+    password: gitpod
+#    user: accountingUser
+#    password: accountingPassword
     schemas: accounting
     locations: classpath:db/migrations,classpath:/db/testdata
 # logging level

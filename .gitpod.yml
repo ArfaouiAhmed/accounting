@@ -12,6 +12,7 @@ tasks:
     command: |
       cd accounting-backend
       export ACCOUNTING_ALLOWED_ORIGINS=`gp url 8080`,`gp url 3000`
+      pg_start.sh
       ./mvnw spring-boot:run
   - name: "Run Accounting Frontend"
     init: |
