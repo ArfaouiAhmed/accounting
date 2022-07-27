@@ -1,6 +1,9 @@
 # accounting
-accounting application for tunisian market
+a basic accounting application
 
-## Steps to start the application
-mvn package - produces backend artifact and build a docker image
-docker-compose up - starts db, api service and frontend
+### CI status
+
+[![Java CI with Maven](https://github.com/ArfaouiAhmed/accounting/actions/workflows/maven-build.yml/badge.svg)](https://github.com/ArfaouiAhmed/accounting/actions/workflows/maven-build.yml)
+
+### start the application in GitPod
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ArfaouiAhmed/accounting)
