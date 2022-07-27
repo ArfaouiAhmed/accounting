@@ -10,8 +10,10 @@ spring:
     mode: never
   datasource:
     url: jdbc:postgresql://localhost:5432/accounting
-    username: accountingUser
-    password: accountingPassword
+#    username: accountingUser
+#    password: accountingPassword
+    username: gitpod
+    password: gitpod
     initialization-mode: never
   jpa:
     show-sql: false
