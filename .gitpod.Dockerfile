@@ -26,7 +26,7 @@ RUN chmod +x ~/pg/scripts/*
 ENV PATH="$HOME/pg/scripts:$PATH"
 
 # Set some environment variables
-ENV DATABASE_URL=postgres://gitpod@127.0.0.1/accounting
+ENV DATABASE_URL=postgres://gitpod@127.0.0.1/postgres
 
 # Give back control
 USER root

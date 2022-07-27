@@ -9,7 +9,7 @@ spring:
   sql.init:
     mode: never
   datasource:
-    url: jdbc:postgresql://localhost:5432/accounting
+    url: jdbc:postgresql://localhost:5432/postgres
 #    username: accountingUser
 #    password: accountingPassword
     username: gitpod
@@ -28,14 +28,14 @@ spring:
         session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 1
         # Generate and log statistics
         generate_statistics: false
-        default_schema: accounting
+        default_schema: postgres
   flyway:
     enabled: true
     username: gitpod
     password: gitpod
 #    user: accountingUser
 #    password: accountingPassword
-    schemas: accounting
+    schemas: postgres
     locations: classpath:db/migrations,classpath:/db/testdata
 # logging level
 logging:
