@@ -4,8 +4,4 @@ fragment CustomerFields on Customer {
     address
     city
     phone
-    companies{
-        id
-        name
-    }
 }

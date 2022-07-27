@@ -1,6 +1,22 @@
-query {
-    getCustomers {
-        name
+query FindCustomerByName($page: Int! = 0, $name: String = "Karim") {
+    customers(
+        page: $page
+        size: 10
+        filter: { name: $name }
+        orders: [{ field: name }]
+    ) {
+        pageInfo {
+            hasNext
+            hasPrev
+            nextPage
+            prevPage
+            totalPages
+            currentPage: pageNumber
+            customersCount: totalCount
+        }
+        customers {
+            name
+        }
     }
 }
 

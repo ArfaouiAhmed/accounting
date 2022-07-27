@@ -42,7 +42,6 @@ export default function CustomersPage() {
         customer?.address,
         customer?.city,
         customer?.phone,
-        // owner.pets.map((pet) => pet.name).join(", "),
       ]);
       resultTable = (
         <div className="mt-8 border-4 border-gray-100 p-4">
@@ -53,7 +52,6 @@ export default function CustomersPage() {
               "Address",
               "City",
               "Telephone",
-              // "Pets",
             ]}
             values={values}
           />

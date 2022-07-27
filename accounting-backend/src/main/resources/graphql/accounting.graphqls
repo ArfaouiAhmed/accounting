@@ -96,11 +96,11 @@ type Mutation {
 }
 
 type UpdateCompanyPayload {
-    company: Company
+    company: Company!
 }
 
 type AddCompanyPayload {
-    company: Company
+    company: Company!
 }
 
 input UpdateCompanyInput {

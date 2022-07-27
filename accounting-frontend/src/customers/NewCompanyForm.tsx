@@ -6,11 +6,26 @@ import Label from "../components/Label";
 import Section from "../components/Section";
 import {
   useAddCompanyMutation,
+  CustomerCompaniesFragment
 } from "../generated/graphql-types";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { ID } from "graphql-ws";
+import { gql } from "@apollo/client";
+import produce from "immer";
 
+/** Fragment for updating the Cache after mutation (adding new Company to existing Customer) */
+const CustomerCompanies = gql`
+    fragment CustomerCompanies on Customer {
+        id
+        companies {
+                name
+                address
+                city
+                phone
+        }
+    }
+`;
 type CompanyFormData = {
   name: string;
   address: string;
@@ -28,6 +43,19 @@ export default function NewCompanyForm({ onFinish, customerId }: NewCompanyFormP
     update(cache, { data }) {
       if (!data) {
         return;
+      }
+      const existingCustomer = cache.readFragment<CustomerCompaniesFragment>({
+        fragment: CustomerCompanies,
+        id: `Customer:${customerId}`,
+      });
+      if (existingCustomer) {
+        const newData = produce(existingCustomer, (draftCustomer) => {
+          draftCustomer.companies.push(data.addCompany.company);
+        });
+        cache.writeFragment<CustomerCompaniesFragment>({
+          fragment: CustomerCompanies,
+          data: newData,
+        });
       }
     }});
   const { register, errors, handleSubmit } = useForm<CompanyFormData>();
