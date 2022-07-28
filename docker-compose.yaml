@@ -12,17 +12,17 @@ services:
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/accounting
-      - SPRING_DATASOURCE_USERNAME=accountingUser
-      - SPRING_DATASOURCE_PASSWORD=accountingPassword
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=gitpod
+      - SPRING_DATASOURCE_PASSWORD=gitpod
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
     environment:
-      - POSTGRES_USER=accountingUser
-      - POSTGRES_PASSWORD=accountingPassword
-      - POSTGRES_DB=accounting
+      - POSTGRES_USER=gitpod
+      - POSTGRES_PASSWORD=gitpod
+      - POSTGRES_DB=postgres
     ports:
       - "5432:5432"

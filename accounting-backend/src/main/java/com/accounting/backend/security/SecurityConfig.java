@@ -108,9 +108,7 @@ public class SecurityConfig  {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
 
-        String allowedOrigins3000 = env.getProperty("ACCOUNTING_ALLOWED_ORIGINS", "http://localhost:3000");
-        String allowedOrigins8080 = env.getProperty("GRAPHQL_ALLOWED_ORIGINS", "http://localhost:8080");
-        String allowedOrigins = allowedOrigins3000+","+allowedOrigins8080;
+        String allowedOrigins = env.getProperty("ACCOUNTING_ALLOWED_ORIGINS", "http://localhost:3000");
         Arrays.stream(allowedOrigins.split(","))
                 .forEach(origin -> {
                     log.info("Allowing Cors for host '{}'", origin);
