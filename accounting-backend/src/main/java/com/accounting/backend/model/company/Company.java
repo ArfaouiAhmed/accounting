@@ -2,10 +2,12 @@ package com.accounting.backend.model.company;
 
 
 import com.accounting.backend.model.customer.Customer;
+import com.accounting.backend.model.transactions.Transaction;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -34,4 +36,7 @@ public class Company {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
+    private Set<Transaction> transactions;
 }

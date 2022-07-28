@@ -6,7 +6,7 @@ type Query {
     # Return the Owner with the specified id
     customer(id: ID!): Customer!
     # Return the Company with the specified id
-    company(id: ID!): Company
+    company(id: ID!): Company!
 
     # Return a List of all companies that have been registered to Customer
     companies: [Company]!

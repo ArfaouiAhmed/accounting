@@ -1,0 +1,5 @@
+query FindCompanyById($companyId: ID!) {
+    company(id: $companyId) {
+        ...CompanyFields
+    }
+}
