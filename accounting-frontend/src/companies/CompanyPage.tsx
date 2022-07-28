@@ -26,7 +26,7 @@ export default function CompanyPage() {
 
   return (
     <PageLayout
-      title={`Companies - ${data.company.name}`}
+      title={`Company - ${data.company.name}`}
     >
       <Section>
         <Table

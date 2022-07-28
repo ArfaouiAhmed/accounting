@@ -9,6 +9,7 @@ import CustomersPage from "./customers/CustomerSearchPage";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import WelcomePage from "./WelcomePage";
+import CompanyPage from "./companies/CompanyPage";
 
 function App() {
   const [token] = useAuthToken();
@@ -40,9 +41,9 @@ function App() {
       <Route path="/customers" exact>
         <CustomersPage />
       </Route>
-      {/*<Route path="/companies/:companyId?">*/}
-      {/*  <CompanyPage />*/}
-      {/*</Route>*/}
+      <Route path="/companies/:companyId?">
+        <CompanyPage />
+      </Route>
       <Route>
         <NotFoundPage />
       </Route>

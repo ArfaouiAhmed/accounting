@@ -27,7 +27,7 @@ export default function CustomerPage() {
 
   return (
     <PageLayout
-      title={`Customers - ${data.customer.name}`}
+      title={`Customer - ${data.customer.name}`}
     >
       <Section>
         <Table
@@ -47,7 +47,7 @@ export default function CustomerPage() {
         <div key={company!.id} className="mb-8">
           <div className="md:flex items-baseline justify-between border-b-4 border-spr-white mb-2 pb-2">
             <Heading level="3">
-              {company!.name}
+              <Link to={`/companies/${company?.id}`}>{company?.name}</Link>,
             </Heading>
             <Button type="link">Edit {company!.name}</Button>
           </div>
