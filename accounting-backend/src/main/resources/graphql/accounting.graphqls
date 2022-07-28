@@ -1,3 +1,6 @@
+scalar BigDecimal
+scalar Date
+
 type Query {
     # Return all known Customers with optional filter or orders
     # If size is unset, it defaults to 20
@@ -20,6 +23,16 @@ type Company {
     address: String!
     city: String!
     phone: String!
+    transactions: [Transaction]!
+}
+
+type Transaction {
+    id: ID
+    name: String
+    number: Int!
+    transactiondate: Date
+    amount: BigDecimal
+    type: String
 }
 
 type User {

@@ -86,7 +86,7 @@
           <database value="accounting" />
           <type value="USER_PASSWORD" />
           <user value="accountingUser" />
-          <deprecated-pwd value="YWNjb3VudGluZ1Bhc3N3b3Jk" />
+          <deprecated-pwd value="" />
         </database>
         <properties>
           <auto-commit value="true" />

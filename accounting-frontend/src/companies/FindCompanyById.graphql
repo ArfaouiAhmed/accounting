@@ -1,5 +1,13 @@
 query FindCompanyById($companyId: ID!) {
     company(id: $companyId) {
         ...CompanyFields
+        transactions{
+            id
+            name
+            number
+            transactiondate
+            amount
+            type
+        }
     }
 }

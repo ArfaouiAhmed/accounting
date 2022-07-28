@@ -20,14 +20,36 @@ query FindCustomerByName($page: Int! = 0, $name: String = "Karim") {
     }
 }
 
-query{
-    getCompany(companyId: "1") {
-        id
+company(id: ID = "bad50ba6-0c0e-11ed-861d-0242ac120002") {
+    id
+    name
+    address
+    city
+    phone
+    __typename
+    transactions {
+            id
+            name
+            number
+            transactiondate
+            amount
+            type
+            __typename
+    }
+    __typename
     }
 }
 
-query{
-    getCustomer(customerId: "1") {
-        id
+query FindCompanyById($companyId: ID! = "bad50ba6-0c0e-11ed-861d-0242ac120002") {
+    company(id: $companyId) {
+        name
+        transactions{
+            id
+            name
+            number
+            transactiondate
+            amount
+            type
+        }
     }
 }
