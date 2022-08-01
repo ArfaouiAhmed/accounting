@@ -1,5 +1,6 @@
 package com.accounting.backend.service;
 
+import com.accounting.backend.common.Utils;
 import com.accounting.backend.model.company.Company;
 import com.accounting.backend.model.customer.Customer;
 import com.accounting.backend.repository.CompanyRepository;
@@ -42,20 +43,13 @@ public class CompanyService {
     @Transactional
     public Company updateCompany(UUID companyId, String name, String address, String city, String telephone) {
         final Company company = companyRepository.findById(companyId).orElseThrow(() -> new EntityNotFoundException(companyId.toString()));;
-            setIfGiven(name, company::setName);
-            setIfGiven(address, company::setAddress);
-            setIfGiven(city, company::setCity);
-            setIfGiven(telephone, company::setPhone);
+        Utils.setIfGiven(name, company::setName);
+        Utils.setIfGiven(address, company::setAddress);
+        Utils.setIfGiven(city, company::setCity);
+        Utils.setIfGiven(telephone, company::setPhone);
 
             companyRepository.save(company);
             return company;
 
-    }
-
-
-    private <T> void setIfGiven(T value, Consumer<T> s) {
-        if (value != null) {
-            s.accept(value);
-        }
     }
 }

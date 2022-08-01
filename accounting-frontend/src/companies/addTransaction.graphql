@@ -1,0 +1,11 @@
+mutation AddTransaction($input: AddTransactionInput!) {
+    addTransaction(input: $input) {
+        transaction {
+            name
+            number
+            transactionDate
+            amount
+            type
+        }
+    }
+}

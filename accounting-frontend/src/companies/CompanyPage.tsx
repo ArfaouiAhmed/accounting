@@ -9,6 +9,7 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import { ID } from "graphql-ws";
 import Paginator from "../customers/Paginator";
+import NewTransactionPanel from "./NewTransactionPanel";
 
 export default function CompanyPage() {
   const { companyId } = useParams<{ companyId: ID }>();
@@ -33,7 +34,7 @@ export default function CompanyPage() {
       const values = data.company.transactions.map((transaction) => [
         transaction?.name,
         transaction?.number,
-        transaction?.transactiondate,
+        transaction?.transactionDate,
         transaction?.amount,
         transaction?.type,
       ]);
@@ -74,7 +75,7 @@ export default function CompanyPage() {
       </div>
       <div className="mb-8">{resultTable}</div>
 
-      {/*<NewCompanyPanel  />*/}
+      <NewTransactionPanel  />
 
 
     </PageLayout>

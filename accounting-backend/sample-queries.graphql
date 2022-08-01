@@ -53,3 +53,17 @@ query FindCompanyById($companyId: ID! = "bad50ba6-0c0e-11ed-861d-0242ac120002") 
         }
     }
 }
+
+mutation AddTransaction($input: AddTransactionInput!) {
+    addTransaction(input: $input) {
+        transaction {
+        name
+        number
+        transactionDate
+        amount
+        type
+        __typename
+        }
+    __typename
+    }
+}, variables={input={companyId=bad50ba6-0c0e-11ed-861d-0242ac120002, name=Arfaoui Ahmed, number=123456}}

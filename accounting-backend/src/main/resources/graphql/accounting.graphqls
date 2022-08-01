@@ -8,11 +8,17 @@ type Query {
     customers(page: Int, size: Int, filter: CustomerFilter, orders: [CustomerOrder!]): CustomerSearchResult!
     # Return the Owner with the specified id
     customer(id: ID!): Customer!
+
+    # Return a List of all companies that have been registered to Customer
+    companies: [Company]!
     # Return the Company with the specified id
     company(id: ID!): Company!
 
     # Return a List of all companies that have been registered to Customer
-    companies: [Company]!
+    transactions: [Transaction]!
+    # Return the Company with the specified id
+    transaction(id: ID!): Transaction!
+
     # Return logged in USer
     me: User!
 }
@@ -30,7 +36,7 @@ type Transaction {
     id: ID
     name: String
     number: Int!
-    transactiondate: Date
+    transactionDate: Date
     amount: BigDecimal
     type: String
 }
@@ -106,6 +112,36 @@ type Mutation {
     # Add a new Company
     addCompany(input: AddCompanyInput!): AddCompanyPayload!
     updateCompany(input: UpdateCompanyInput!): UpdateCompanyPayload!
+
+    # Add a new Transaction
+    addTransaction(input: AddTransactionInput!): AddTransactionPayload!
+    updateTransaction(input: UpdateTransactionInput!): UpdateTransactionPayload!
+}
+
+type UpdateTransactionPayload {
+    transaction: Transaction!
+}
+
+type AddTransactionPayload {
+    transaction: Transaction!
+}
+
+input UpdateTransactionInput {
+    transactionId: ID!
+    name: String!
+    number: Int!
+    transactionDate: Date
+    amount: BigDecimal!
+    type: String!
+}
+
+input AddTransactionInput {
+    companyId: ID!
+    name: String!
+    number: Int!
+    transactionDate: Date
+    amount: BigDecimal!
+    type: String!
 }
 
 type UpdateCompanyPayload {

@@ -5,7 +5,7 @@ query FindCompanyById($companyId: ID!) {
             id
             name
             number
-            transactiondate
+            transactionDate
             amount
             type
         }

@@ -1,5 +1,6 @@
 package com.accounting.backend.service;
 
+import com.accounting.backend.common.Utils;
 import com.accounting.backend.model.customer.Customer;
 import com.accounting.backend.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,18 +39,12 @@ public class CustomerService {
     public Customer updateCustomer(@NotEmpty UUID customerId, String name, String telephone, String address, String city) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new EntityNotFoundException(customerId.toString()));
-            setIfGiven(name, customer::setName);
-            setIfGiven(address, customer::setAddress);
-            setIfGiven(city, customer::setCity);
-            setIfGiven(telephone, customer::setPhone);
+        Utils.setIfGiven(name, customer::setName);
+        Utils.setIfGiven(address, customer::setAddress);
+        Utils.setIfGiven(city, customer::setCity);
+        Utils.setIfGiven(telephone, customer::setPhone);
             customerRepository.save(customer);
 
         return customer;
-    }
-
-    private void setIfGiven(String value, Consumer<String> s) {
-        if (value != null) {
-            s.accept(value);
-        }
     }
 }
